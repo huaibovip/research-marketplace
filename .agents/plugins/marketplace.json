@@ -1,0 +1,20 @@
+{
+    "name": "research-marketplace",
+    "interface": {
+        "displayName": "Research Marketplace"
+    },
+    "plugins": [
+        {
+            "name": "research-writing-assistant",
+            "source": {
+                "source": "local",
+                "path": "./plugins/research-writing-assistant"
+            },
+            "policy": {
+                "installation": "AVAILABLE",
+                "authentication": "ON_INSTALL"
+            },
+            "category": "Research"
+        }
+    ]
+}

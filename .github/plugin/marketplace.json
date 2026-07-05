@@ -1,0 +1,21 @@
+{
+    "name": "research-marketplace",
+    "owner": {
+        "name": "Huaibo",
+        "email": "huaibovip@gmail.com"
+    },
+    "metadata": {
+        "description": "Research Marketplace",
+        "version": "1.0.0"
+    },
+    "plugins": [
+        {
+            "name": "research-writing-assistant",
+            "description": "面向中文科研论文的AI写作助手: 支持头脑风暴、章节写作、文献综述、Python图表、LaTeX输出",
+            "author": {
+                "name": "Norman-bury"
+            },
+            "source": "./plugins/research-writing-assistant"
+        }
+    ]
+}
