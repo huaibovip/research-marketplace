@@ -1,0 +1,115 @@
+{
+    "name": "research-marketplace",
+    "owner": {
+        "name": "Huaibo",
+        "email": "huaibovip@gmail.com"
+    },
+    "metadata": {
+        "description": "Research Marketplace",
+        "version": "1.0.0"
+    },
+    "plugins": [
+        {
+            "name": "research-writing-assistant",
+            "description": "面向中文科研论文的AI写作助手: 支持头脑风暴、章节写作、文献综述、Python图表、LaTeX输出",
+            "author": {
+                "name": "Norman-bury"
+            },
+            "source": {
+                "source": "github",
+                "repo": "https://github.com/huaibovip/research-marketplace.git",
+                "path": "./plugins/research-writing-assistant",
+                "ref": "main"
+            },
+            "homepage": "https://github.com/Norman-bury/research-writing-skill",
+            "repository": "https://github.com/Norman-bury/research-writing-skill",
+            "version": "6f79595",
+            "license": "MIT"
+        },
+        {
+            "name": "academic-research-suite",
+            "description": "Production-grade academic research pipeline (Codex): research → write → review → revise → finalize.",
+            "author": {
+                "name": "Cheng-I Wu"
+            },
+            "source": {
+                "source": "github",
+                "repo": "https://github.com/huaibovip/research-marketplace.git",
+                "path": "./plugins/academic-research-suite",
+                "ref": "main"
+            },
+            "homepage": "https://github.com/Imbad0202/academic-research-skills-codex",
+            "repository": "https://github.com/Imbad0202/academic-research-skills-codex",
+            "version": "0.1.19",
+            "license": "CC-BY-NC-4.0"
+        },
+        {
+            "name": "academic-research-skills",
+            "description": "Production-grade academic research pipeline: research → write → review → revise → finalize.",
+            "author": {
+                "name": "Cheng-I Wu"
+            },
+            "source": {
+                "source": "github",
+                "repo": "https://github.com/huaibovip/research-marketplace.git",
+                "path": "./plugins/academic-research-skills",
+                "ref": "main"
+            },
+            "homepage": "https://github.com/Imbad0202/academic-research-skills",
+            "repository": "https://github.com/Imbad0202/academic-research-skills",
+            "version": "3.17.0",
+            "license": "CC-BY-NC-4.0"
+        },
+        {
+            "name": "nature-skills",
+            "description": "Academic workflow bundles for Nature-style scientific work.",
+            "author": {
+                "name": "Yuan1z0825"
+            },
+            "source": {
+                "source": "github",
+                "repo": "https://github.com/huaibovip/research-marketplace.git",
+                "path": "./plugins/nature-skills",
+                "ref": "main"
+            },
+            "homepage": "https://github.com/Yuan1z0825/nature-skills",
+            "repository": "https://github.com/Yuan1z0825/nature-skills",
+            "version": "69eaec8",
+            "license": "MIT"
+        },
+        {
+            "name": "zotero-cli",
+            "description": "Zotero command-line interface for managing references.",
+            "author": {
+                "name": "Agents365-ai"
+            },
+            "source": {
+                "source": "github",
+                "repo": "https://github.com/huaibovip/research-marketplace.git",
+                "path": "./plugins/zotero-cli",
+                "ref": "main"
+            },
+            "homepage": "https://github.com/Agents365-ai/zotero-cli-cc",
+            "repository": "https://github.com/Agents365-ai/zotero-cli-cc",
+            "version": "0.4.1",
+            "license": "AGPL-3.0"
+        },
+        {
+            "name": "paper-spine",
+            "description": "Contribution-first, reviewer-aware academic paper and report writing system.",
+            "author": {
+                "name": "WUBING2023"
+            },
+            "source": {
+                "source": "github",
+                "repo": "https://github.com/huaibovip/research-marketplace.git",
+                "path": "./plugins/paper-spine/claude",
+                "ref": "main"
+            },
+            "homepage": "https://github.com/WUBING2023/PaperSpine",
+            "repository": "https://github.com/WUBING2023/PaperSpine",
+            "version": "4.0.0",
+            "license": "MIT"
+        }
+    ]
+}

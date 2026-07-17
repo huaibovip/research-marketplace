@@ -1,0 +1,104 @@
+{
+    "name": "research-marketplace",
+    "interface": {
+        "displayName": "Research Marketplace"
+    },
+    "plugins": [
+        {
+            "name": "research-writing-assistant",
+            "source": {
+                "source": "git-subdir",
+                "url": "https://github.com/huaibovip/research-marketplace.git",
+                "path": "./plugins/research-writing-assistant",
+                "ref": "main"
+            },
+            "policy": {
+                "installation": "AVAILABLE",
+                "authentication": "ON_INSTALL"
+            },
+            "category": "Research",
+            "homepage": "https://github.com/Norman-bury/research-writing-skill"
+        },
+        {
+            "name": "academic-research-skills",
+            "source": {
+                "source": "git-subdir",
+                "url": "https://github.com/huaibovip/research-marketplace.git",
+                "path": "./plugins/academic-research-skills",
+                "ref": "main"
+            },
+            "policy": {
+                "installation": "AVAILABLE",
+                "authentication": "ON_INSTALL"
+            },
+            "category": "Research",
+            "homepage": "https://github.com/Imbad0202/academic-research-skills"
+        },
+        {
+            "name": "academic-research-suite",
+            "source": {
+                "source": "git-subdir",
+                "url": "https://github.com/huaibovip/research-marketplace.git",
+                "path": "./plugins/academic-research-suite",
+                "ref": "main"
+            },
+            "policy": {
+                "installation": "AVAILABLE",
+                "authentication": "ON_INSTALL"
+            },
+            "category": "Research",
+            "homepage": "https://github.com/Imbad0202/academic-research-skills-codex"
+        },
+        {
+            "name": "nature-skills",
+            "source": {
+                "source": "git-subdir",
+                "url": "https://github.com/huaibovip/research-marketplace.git",
+                "path": "./plugins/nature-skills",
+                "ref": "main"
+            },
+            "policy": {
+                "installation": "AVAILABLE",
+                "authentication": "ON_INSTALL"
+            },
+            "category": "Research",
+            "homepage": "https://github.com/Yuan1z0825/nature-skills"
+        },
+        {
+            "name": "zotero-cli",
+            "author": {
+                "name": "Agents365-ai"
+            },
+            "source": {
+                "source": "git-subdir",
+                "url": "https://github.com/huaibovip/research-marketplace.git",
+                "path": "./plugins/zotero-cli",
+                "ref": "main"
+            },
+            "policy": {
+                "installation": "AVAILABLE",
+                "authentication": "ON_INSTALL"
+            },
+            "category": "Research",
+            "homepage": "https://github.com/Agents365-ai/zotero-cli-cc"
+        },
+        {
+            "name": "paper-spine",
+            "author": {
+                "name": "WUBING2023"
+            },
+            "source": {
+                "source": "git-subdir",
+                "url": "https://github.com/huaibovip/research-marketplace.git",
+                "path": "./plugins/paper-spine/codex",
+                "ref": "main"
+            },
+            "policy": {
+                "installation": "AVAILABLE",
+                "authentication": "ON_INSTALL"
+            },
+            "category": "Research",
+            "homepage": "https://github.com/WUBING2023/PaperSpine"
+        }
+    ]
+}
