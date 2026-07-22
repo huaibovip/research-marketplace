@@ -1,0 +1,19 @@
+{
+    "name": "paper-spine",
+    "description": "Contribution-first, reviewer-aware academic paper and report writing system for Claude Code.",
+    "version": "4.0.0",
+    "author": {
+        "name": "WUBING2023"
+    },
+    "homepage": "https://github.com/WUBING2023/PaperSpine",
+    "repository": "https://github.com/WUBING2023/PaperSpine",
+    "license": "MIT",
+    "keywords": [
+        "academic-writing",
+        "paper-writing",
+        "latex",
+        "research",
+        "reports",
+        "competition-writing"
+    ]
+}

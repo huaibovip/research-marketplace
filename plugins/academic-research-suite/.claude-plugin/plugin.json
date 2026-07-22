@@ -1,0 +1,22 @@
+{
+    "name": "academic-research-suite",
+    "description": "Production-grade academic research pipeline (Codex): research → write → review → revise → finalize.",
+    "version": "0.1.20",
+    "author": {
+        "name": "Cheng-I Wu"
+    },
+    "homepage": "https://github.com/Imbad0202/academic-research-skills-codex",
+    "repository": "https://github.com/Imbad0202/academic-research-skills-codex",
+    "license": "CC-BY-NC-4.0",
+    "keywords": [
+        "academic",
+        "research",
+        "writing",
+        "review",
+        "deep-research",
+        "literature-review",
+        "systematic-review",
+        "peer-review",
+        "scholarly-publishing"
+    ]
+}

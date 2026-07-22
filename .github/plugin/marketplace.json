@@ -1,0 +1,61 @@
+{
+    "name": "research-marketplace",
+    "owner": {
+        "name": "Huaibo",
+        "email": "huaibovip@gmail.com"
+    },
+    "metadata": {
+        "description": "Research Marketplace",
+        "version": "1.0.0"
+    },
+    "plugins": [
+        {
+            "name": "research-writing-assistant",
+            "description": "面向中文科研论文的AI写作助手: 支持头脑风暴、章节写作、文献综述、Python图表、LaTeX输出",
+            "author": {
+                "name": "Norman-bury"
+            },
+            "source": "./plugins/research-writing-assistant"
+        },
+        {
+            "name": "academic-research-suite",
+            "description": "Production-grade academic research pipeline (Codex): research → write → review → revise → finalize.",
+            "author": {
+                "name": "Cheng-I Wu"
+            },
+            "source": "./plugins/academic-research-suite"
+        },
+        {
+            "name": "academic-research-skills",
+            "description": "Production-grade academic research pipeline: research → write → review → revise → finalize.",
+            "author": {
+                "name": "Cheng-I Wu"
+            },
+            "source": "./plugins/academic-research-skills"
+        },
+        {
+            "name": "nature-skills",
+            "description": "Academic workflow bundles for Nature-style scientific work.",
+            "author": {
+                "name": "Yuan1z0825"
+            },
+            "source": "./plugins/nature-skills"
+        },
+        {
+            "name": "zotero-cli",
+            "description": "Zotero command-line interface for managing references.",
+            "author": {
+                "name": "Agents365-ai"
+            },
+            "source": "./plugins/zotero-cli"
+        },
+        {
+            "name": "paper-spine",
+            "description": "Contribution-first, reviewer-aware academic paper and report writing system.",
+            "author": {
+                "name": "WUBING2023"
+            },
+            "source": "./plugins/paper-spine/claude"
+        }
+    ]
+}

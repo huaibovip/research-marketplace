@@ -1,0 +1,22 @@
+{
+    "name": "academic-research-skills",
+    "description": "Production-grade academic research pipeline: research → write → review → revise → finalize.",
+    "version": "3.19.0",
+    "author": {
+        "name": "Cheng-I Wu"
+    },
+    "homepage": "https://github.com/Imbad0202/academic-research-skills",
+    "repository": "https://github.com/Imbad0202/academic-research-skills",
+    "license": "CC-BY-NC-4.0",
+    "keywords": [
+        "academic",
+        "research",
+        "writing",
+        "review",
+        "deep-research",
+        "literature-review",
+        "systematic-review",
+        "peer-review",
+        "scholarly-publishing"
+    ]
+}

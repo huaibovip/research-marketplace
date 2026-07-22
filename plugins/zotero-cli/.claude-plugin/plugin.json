@@ -1,0 +1,17 @@
+{
+    "name": "zotero-cli",
+    "description": "Zotero command-line interface for managing references.",
+    "version": "0.4.1",
+    "author": {
+        "name": "Agents365-ai"
+    },
+    "homepage": "https://github.com/Agents365-ai/zotero-cli-cc",
+    "repository": "https://github.com/Agents365-ai/zotero-cli-cc",
+    "license": "AGPL-3.0",
+    "keywords": [
+        "academic",
+        "research",
+        "zotero",
+        "cli"
+    ]
+}

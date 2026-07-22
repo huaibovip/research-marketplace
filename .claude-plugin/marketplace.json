@@ -1,0 +1,78 @@
+{
+    "name": "research-marketplace",
+    "description": "research Marketplace",
+    "owner": {
+        "name": "Huaibo",
+        "email": "huaibovip@gmail.com"
+    },
+    "plugins": [
+        {
+            "name": "research-writing-assistant",
+            "description": "面向中文科研论文的AI写作助手: 支持头脑风暴、章节写作、文献综述、Python图表、LaTeX输出",
+            "author": {
+                "name": "Norman-bury"
+            },
+            "source": "./plugins/research-writing-assistant",
+            "homepage": "https://github.com/Norman-bury/research-writing-skill"
+        },
+        {
+            "name": "academic-research-skills",
+            "description": "Production-grade academic research pipeline: research → write → review → revise → finalize.",
+            "author": {
+                "name": "Cheng-I Wu"
+            },
+            "source": "./plugins/academic-research-skills",
+            "homepage": "https://github.com/Imbad0202/academic-research-skills"
+        },
+        {
+            "name": "academic-research-suite",
+            "description": "Production-grade academic research pipeline (Codex): research → write → review → revise → finalize.",
+            "author": {
+                "name": "Cheng-I Wu"
+            },
+            "source": "./plugins/academic-research-suite",
+            "homepage": "https://github.com/Imbad0202/academic-research-skills-codex"
+        },
+        {
+            "name": "nature-skills",
+            "description": "Academic workflow bundles for Nature-style scientific work.",
+            "author": {
+                "name": "Yuan1z0825"
+            },
+            "source": "./plugins/nature-skills",
+            "homepage": "https://github.com/Yuan1z0825/nature-skills"
+        },
+        {
+            "name": "zotero-cli",
+            "description": "Zotero command-line interface for managing references.",
+            "author": {
+                "name": "Agents365-ai"
+            },
+            "source": "./plugins/zotero-cli",
+            "homepage": "https://github.com/Agents365-ai/zotero-cli-cc"
+        },
+        {
+            "name": "paper-spine",
+            "description": "Contribution-first, reviewer-aware academic paper and report writing system.",
+            "author": {
+                "name": "WUBING2023"
+            },
+            "source": "./plugins/paper-spine/claude",
+            "homepage": "https://github.com/WUBING2023/PaperSpine"
+        },
+        {
+            "name": "codex",
+            "description": "Use Codex from Claude Code to review code or delegate tasks.",
+            "author": {
+                "name": "OpenAI"
+            },
+            "source": {
+                "source": "git-subdir",
+                "url": "https://github.com/openai/codex-plugin-cc.git",
+                "path": "plugins/codex",
+                "ref": "main"
+            },
+            "homepage": "https://github.com/openai/codex-plugin-cc"
+        }
+    ]
+}

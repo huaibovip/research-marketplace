@@ -1,0 +1,86 @@
+{
+    "name": "research-marketplace",
+    "interface": {
+        "displayName": "Research Marketplace"
+    },
+    "plugins": [
+        {
+            "name": "research-writing-assistant",
+            "source": {
+                "source": "local",
+                "path": "./plugins/research-writing-assistant"
+            },
+            "policy": {
+                "installation": "AVAILABLE",
+                "authentication": "ON_INSTALL"
+            },
+            "category": "Research"
+        },
+        {
+            "name": "academic-research-skills",
+            "source": {
+                "source": "local",
+                "path": "./plugins/academic-research-skills"
+            },
+            "policy": {
+                "installation": "AVAILABLE",
+                "authentication": "ON_INSTALL"
+            },
+            "category": "Research"
+        },
+        {
+            "name": "academic-research-suite",
+            "source": {
+                "source": "local",
+                "path": "./plugins/academic-research-suite"
+            },
+            "policy": {
+                "installation": "AVAILABLE",
+                "authentication": "ON_INSTALL"
+            },
+            "category": "Research"
+        },
+        {
+            "name": "nature-skills",
+            "source": {
+                "source": "local",
+                "path": "./plugins/nature-skills"
+            },
+            "policy": {
+                "installation": "AVAILABLE",
+                "authentication": "ON_INSTALL"
+            },
+            "category": "Research"
+        },
+        {
+            "name": "zotero-cli",
+            "author": {
+                "name": "Agents365-ai"
+            },
+            "source": {
+                "source": "local",
+                "path": "./plugins/zotero-cli"
+            },
+            "policy": {
+                "installation": "AVAILABLE",
+                "authentication": "ON_INSTALL"
+            },
+            "category": "Research"
+        },
+        {
+            "name": "paper-spine",
+            "author": {
+                "name": "WUBING2023"
+            },
+            "source": {
+                "source": "local",
+                "path": "./plugins/paper-spine/codex"
+            },
+            "policy": {
+                "installation": "AVAILABLE",
+                "authentication": "ON_INSTALL"
+            },
+            "category": "Research"
+        }
+    ]
+}

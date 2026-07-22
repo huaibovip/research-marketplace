@@ -1,0 +1,253 @@
+# Command Reference
+
+## Search & Browse
+
+```bash
+zot --json search "transformer attention"
+zot --json search "BERT" --collection "NLP"
+zot --json list --collection "Machine Learning" --limit 10
+zot --json read ITEMKEY
+zot --json relate ITEMKEY
+```
+
+## Notes & Tags
+
+```bash
+zot --json note ITEMKEY
+zot note ITEMKEY --add "Key finding: ..."
+zot --json tag ITEMKEY
+zot tag ITEMKEY --add "important"
+zot tag ITEMKEY --remove "to-read"
+```
+
+## Citation Export
+
+```bash
+zot export ITEMKEY                    # BibTeX (default)
+zot export ITEMKEY --format csl-json  # CSL-JSON
+zot export ITEMKEY --format ris       # RIS
+zot export ITEMKEY --format json      # Raw JSON
+
+# Formatted citation (copies to clipboard)
+zot cite ITEMKEY                      # APA (default)
+zot cite ITEMKEY --style nature       # Nature
+zot cite ITEMKEY --style vancouver    # Vancouver
+```
+
+## Item Management (Write Ops)
+
+```bash
+zot add --doi "10.1038/s41586-023-06139-9"
+zot add --url "https://arxiv.org/abs/2301.00001"
+zot add --from-file dois.txt              # Batch import (one DOI/URL per line)
+zot add --pdf paper.pdf                   # Add from local PDF (auto-extract DOI)
+zot update ITEMKEY --title "New Title"
+zot update ITEMKEY --field volume=42 --field pages=1-10
+zot attach ITEMKEY --file supplement.pdf                 # auto: bridge if desktop up (local), else cloud
+zot attach ITEMKEY --file supplement.pdf --via-bridge    # force LOCAL storage (needs Zotero desktop + bridge)
+zot attach ITEMKEY --file supplement.pdf --no-via-bridge # force cloud (Web API); reports result=created|exists
+```
+
+> **`zot attach` storage note.** The default path uploads via the Web API into
+> zotero.org **cloud** storage — the file only appears in your local `storage/`
+> after the desktop runs a file-sync (and "Sync attachment files" is enabled).
+> If you keep files locally (or use a mover like zotero-attanger) and the file
+> shows as "could not be found", use `--via-bridge` to import through the running
+> desktop so the binary lands in local storage immediately.
+
+#### Cleaning up orphaned attachments
+
+When attachments show "the attached file could not be found" (file missing from
+local `storage/`), scan and clean them:
+
+```bash
+zot orphans list                       # classify: dead / recoverable / unknown
+zot orphans list --dead-only           # only ones with no copy anywhere
+zot orphans clean --dry-run            # preview (targets 'dead' only by default)
+zot orphans clean --yes                # delete dead orphans via the Web API
+```
+
+`recoverable` orphans still have a server copy — run a Zotero file-sync to pull
+them down rather than deleting. `clean --include-recoverable` also deletes those
+(discards the cloud copy too), so use it with care.
+
+### Safety Flags
+
+```bash
+# Preview first — exact behavior is command-specific
+zot add --doi "10.1038/..." --dry-run
+zot update ITEMKEY --field volume=42 --dry-run
+
+# Idempotency — safe retry after network failure
+zot add --doi "10.1038/..." --idempotency-key abc-123
+zot update ITEMKEY --title "X" --idempotency-key abc-124
+zot attach ITEMKEY --file x.pdf --idempotency-key abc-125
+```
+
+Most write commands preview their planned mutation with `--dry-run`. Some
+bridge-backed or batch commands use command-specific preview semantics instead
+(for example `zot find-pdf --dry-run` checks bridge reachability, while
+`zot update-status` previews by default and uses `--apply` to write).
+
+## Trash Lifecycle
+
+```bash
+zot delete ITEMKEY --dry-run             # preview moving the item to trash
+zot delete ITEMKEY --yes                 # execute without interactive confirmation
+zot delete ITEMKEY --yes --idempotency-key abc-126
+zot trash restore ITEMKEY                # restore from trash
+```
+
+`zot delete` is the destructive step here; `zot trash restore` is the recovery
+path and does not permanently remove records.
+
+## Find Full Text PDF (Zotero desktop bridge)
+
+`zot find-pdf` triggers Zotero desktop's "Find Full Text", reusing the
+desktop's configured PDF resolvers AND its authenticated sessions /
+institutional proxies. This is the only way to reach paywalled PDFs from the
+CLI — the Zotero Web API cannot do it. Requires Zotero running with the
+`zot-cli-bridge` plugin installed.
+
+```bash
+zot find-pdf ITEMKEY                  # find & attach a PDF via desktop resolvers
+zot find-pdf ITEMKEY --dry-run        # only check the bridge is reachable
+zot find-pdf ITEMKEY --timeout 180    # give slow resolvers more time
+zot find-pdf ITEMKEY --library-id 42  # target a specific library
+```
+
+One-time bridge setup (enables `find-pdf`):
+
+```bash
+zot bridge install                    # build the plugin .xpi + print install steps
+zot bridge install --output ~/zot-cli-bridge.xpi   # choose where to write the .xpi
+zot bridge status                     # check Zotero + plugin reachability
+zot bridge uninstall                  # show how to remove the plugin
+```
+
+`zot bridge install` builds the `.xpi`; you finish installation in Zotero via
+Tools -> Plugins -> gear -> Install Plugin From File (Zotero owns plugin
+installation, so the CLI cannot sideload silently).
+
+## Rename Attachment Files
+
+`zot rename` renames an item's PDF attachment files from its metadata. Default
+template `{journal}_{year}_{title}.pdf` (tokens: `{journal} {year} {title}
+{fulltitle} {shorttitle} {author}`; `{title}` prefers Short Title when set).
+Non-PDF files (Excel/Word/snapshots) are skipped;
+supplementary PDFs are detected by filename and get an `_SI` suffix. Goes
+through the bridge plugin (needs v0.2.0+), so Zotero must be running.
+
+```bash
+zot rename ITEMKEY --dry-run               # ALWAYS preview first: shows old -> new
+zot rename ITEMKEY                          # rename main + supplementary PDFs
+zot rename ITEMKEY1 ITEMKEY2                # several items at once
+zot rename ITEMKEY --main-only             # only the main PDF
+zot rename ITEMKEY --template "{author}_{year}_{title}"
+zot rename ITEMKEY --force                 # overwrite if the target name exists
+zot rename --attachment ATTKEY --name "X.pdf"   # rename one specific file
+```
+
+**Always `--dry-run` first** so the user can confirm the new names before any
+files change.
+
+## Enrich with Journal Metrics
+
+`zot enrich` writes journal metrics (impact factor, JCR/中科院 quartile,
+北大/南大核心 flags, etc.) into an item's Extra field. **Source-neutral**: you
+supply the values (inline `--set` or a `--from-map` table you maintain); `zot`
+ships no journal data and calls no third-party API. Plain Web-API write (no
+bridge); needs API credentials.
+
+```bash
+zot enrich ITEMKEY --set "SCI IF=5.8" --set "JCR=Q1" --dry-run   # preview first
+zot enrich ITEMKEY --set "中科院分区=2区"
+zot enrich ITEMKEY1 ITEMKEY2 --from-map journals.toml            # apply table by journal name
+zot enrich ITEMKEY --from-map journals.toml --set "JCR=Q1"       # --set overrides the map
+```
+
+Metrics go in a `<!-- zot:metrics -->` block in Extra; re-running replaces only
+that block (idempotent) and preserves other Extra content. The `--from-map`
+file is TOML: a `["Journal Name"]` table per journal with `"metric" = "value"`
+lines.
+
+## Collections
+
+```bash
+zot --json collection list
+zot --json collection items COLLECTIONKEY
+zot collection create "New Project"
+zot collection move ITEMKEY COLLECTIONKEY
+zot collection rename COLLECTIONKEY "New Name"
+zot collection delete COLLECTIONKEY
+```
+
+## Duplicates, Recent & Trash
+
+```bash
+zot --json duplicates                # DOI + title matching
+zot --json duplicates --by title     # Title-only matching
+zot --json recent --days 7           # Recently added
+zot --json recent --modified         # Sort by date modified instead of date added
+zot --json trash list                # View trashed items
+zot trash restore ITEMKEY            # Restore from trash
+```
+
+## PDF & Summarization
+
+```bash
+zot --json pdf ITEMKEY                      # Full text extraction
+zot --json pdf --outline ITEMKEY            # Numbered section headings
+zot --json pdf --section N ITEMKEY          # Extract content under the N-th heading
+zot pdf ITEMKEY --annotations               # PDF annotations
+zot --json pdf ITEMKEY --references         # parsed reference list (needs GROBID service)
+zot --json pdf ITEMKEY --tables             # extract tables (needs [pdfplumber] extra)
+zot --json summarize ITEMKEY
+zot summarize-all
+```
+
+**Token-saving strategy**: For large PDFs, use `--outline` to get section IDs first, then `--section` to extract only what you need.
+
+#### Getting a local PDF path for agents
+
+Use `zot attachment path KEY` when an agent needs the local PDF file path for
+rendering pages, inspecting figures, or handing the file to another parser.
+Unlike `zot open KEY`, this command does not launch a GUI viewer.
+
+```bash
+zot attachment path KEY              # first PDF only (one bare path)
+zot attachment path KEY --all        # every PDF, one path per line
+zot --json attachment path KEY -a    # every PDF as a JSON array
+```
+
+By default it returns the **first** PDF: in JSON mode `item_key`,
+`attachment_key`, `path`, `filename`, `exists`, and `mime_type`. Missing items,
+missing PDFs, and missing local files return `not_found`.
+
+Pass `--all` (`-a`) when an item carries more than one PDF — common now that
+papers ship an **appendix or supplementary file** beside the main article. It
+lists every PDF whose file exists locally (one path per line for humans). JSON
+mode returns `{item_key, count, attachments: [...]}`, each entry with
+`attachment_key`, `path`, `filename`, `exists`, `mime_type`. Attachments not yet
+synced to local storage are skipped; `not_found` comes back only when the item
+has no PDF at all, or none has a local file.
+
+## Utilities
+
+```bash
+zot --json stats                     # Library statistics
+zot open ITEMKEY                     # Open PDF in system viewer (human-facing)
+zot open --url ITEMKEY               # Open URL/DOI in browser
+zot update-status --limit 20        # Check preprint publication status (works without S2_API_KEY; key raises rate limits)
+```
+
+## Group Library
+
+```bash
+zot --library group:12345 search "query"
+zot --library group:12345 list
+```
+
+Most library-scoped commands support `--library group:<id>` to operate on group
+libraries. Some bridge-backed commands expose command-specific selectors
+instead, such as `zot find-pdf ITEMKEY --library-id 42`.
